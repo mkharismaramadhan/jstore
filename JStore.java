@@ -1,19 +1,24 @@
+/**
+ * Class JStore
+ * Berisi mengenai fungsi utama JStore
+ * @author M. Kharisma Ramadhan
+ * @version 1.0
+ * since 2019
+ */
 
 public class JStore
 {
-    // instance variables - replace the example below with your own
+    /**
+     * Method untuk main program
+     */
     public void main(String[] args)
     {        
     }
     
+    /**
+     * Constructor dari JStore
+     */
     public JStore()
     {
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
 }

@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class Location here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Class Location
+ * Berisi mengenai location
+ * @author M. Kharisma Ramadhan
+ * @version 1.0
+ * since 2019
  */
 public class Location
 {
@@ -13,7 +14,9 @@ public class Location
     private String city;
 
     /**
-     * Constructor for objects of class Location
+     * Constructor dari class location yang berfungsi untuk
+     * menset variabel
+     * @param city, province, description
      */
     public Location(String city, String province, String 
     description)
@@ -23,42 +26,63 @@ public class Location
     this.description = description;
     }
     
+    /**
+     * Method untuk mendapatkan nilai province
+     * @return province
+     */
     public String getProvince()
     {
         return province;
     }
     
+    /**
+     * Method untuk mendapatkan nilai city
+     * @return city
+     */
     public String getCity()
     {
         return city;
     }
     
+    /**
+     * Method untuk mendapatkan nilai description
+     * @return description
+     */
     public String getDescription()
     {
         return description;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Method untuk menset nilai province
+     * @param province
      */
     public void setProvince(String province)
     {
     this.province = province;
     }
     
+    /**
+     * Method untuk menset nilai city
+     * @param city
+     */
     public void setCity(String city)
     {
     this.city = city;
     }
     
+    /**
+     * Method untuk menset nilai description
+     * @param description
+     */
     public void setDescription(String description)
     {
     this.description = description;
     }
     
+    /**
+     * Method untuk mencetak nilai province
+     */
     public void printData()
     {
         System.out.println(province);

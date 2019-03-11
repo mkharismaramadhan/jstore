@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class Supplier here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Class Supplier
+ * Berisi mengenai Supplier
+ * @author M. Kharisma Ramadhan
+ * @version 1.0
+ * since 2019
  */
 public class Supplier
 {
@@ -15,7 +16,9 @@ public class Supplier
     private Location location;
 
     /**
-     * Constructor for objects of class Supplier
+     * Constructor dari class supplier yang berfungsi untuk
+     * menset variabel
+     * @param id, name, email, phoneNumber, location
      */
     public Supplier(int id, String name, String email, 
     String phoneNumber, Location location)
@@ -27,56 +30,99 @@ public class Supplier
         this.location = location;
     }
     
+    /**
+     * Method untuk mendapatkan nilai ID
+     * @return id
+     */
     public int getId()
     {
         return id;
     }
     
+    /**
+     * Method untuk mendapatkan nilai name
+     * @return name
+     */
     public String getName()
     {
         return name;
     }
     
+    /**
+     * Method untuk mendapatkan nilai email
+     * @return email
+     */
     public String getEmail()
     {
         return email;
     }
     
+    /**
+     * Method untuk mendapatkan nilai phoneNumber
+     * @return phoneNumber
+     */
     public String getPhoneNumber()
     {
         return phoneNumber;
     }
     
+    /**
+     * Method untuk mendapatkan nilai location
+     * @return location
+     */
     public Location getLocation()
     {
         return location;
     }
     
+    /**
+     * Method untuk menset nilai id
+     * @param id
+     */
     public void setId(int id)
     {
         this.id = id;
     }
     
+    /**
+     * Method untuk menset nilai name
+     * @param name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
     
+    /**
+     * Method untuk menset nilai email
+     * @param email
+     */
     public void setEmail(String email)
     {
         this.email = email;
     }
     
+    /**
+     * Method untuk menset nilai phoneNumber
+     * @param phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
     }
     
+    /**
+     * Method untuk menset nilai location
+     * @param location
+     */
     public void setLocation(Location location)
     {
         this.location = location;
     }
     
+    /**
+     * Method untuk mencetak nama
+     */
     public void printData()
     {
         System.out.println(name);

@@ -8,16 +8,13 @@
  */
 public class DatabaseSupplier
 {
-    /**
-     * class dari DatabaseSupplier
-     */
+    
     // instance variables - replace the example below with your own
     private String[] listSupplier;
     private Supplier supplier;
 
     /**
      * Method untuk menambah supplier
-     *
      * @param  supplier
      * @return true
      */
@@ -28,19 +25,15 @@ public class DatabaseSupplier
     
     /**
      * Method untuk menghapus supplier
-     *
      * @param  supplier
-     * @return unknown
      */
     public void removeSupplier(Supplier supplier)
     {
-        return;
+        this.supplier = supplier;
     }
     
     /**
      * Method untuk mengambil nilai dari var supplier
-     *
-     * @param  tidak ada
      * @return supplier
      */
     public Supplier getSupplier()
@@ -50,8 +43,6 @@ public class DatabaseSupplier
     
     /**
      * Method untuk mengambil listSupplier
-     *
-     * @param  tidak ada
      * @return listSupplier
      */
     public String[] getListSupplier()
