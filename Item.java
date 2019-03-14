@@ -14,7 +14,8 @@ public class Item
     private String name;
     private int stock;
     private int price;
-    private String category;
+    private ItemCategory category;
+    private ItemStatus status;
     private Supplier supplier;
 
     /**
@@ -22,13 +23,14 @@ public class Item
      * @param id, name, stock, price, category, supplier
      */
     public Item(int id, String name, int stock, int price,
-    String category, Supplier supplier)
+    ItemCategory category, ItemStatus status, Supplier supplier)
     {
         this.id = id;
         this.name = name;
         this.stock = stock;
         this.price = price;
         this.category = category;
+        this.status = status;
         this.supplier = supplier;        
     }
     
@@ -72,9 +74,18 @@ public class Item
      * Method untuk mendapatkan nilai category
      * @return category
      */
-    public String getCategory() 
+    public ItemCategory getCategory() 
     {
         return category;
+    }
+    
+    /**
+     * Method untuk mendapatkan nilai category
+     * @return category
+     */
+    public ItemStatus getStatus() 
+    {
+        return status;
     }
     
     /**
@@ -126,9 +137,18 @@ public class Item
      * Method untuk menset nilai category
      * @param category
      */
-    public void setCategory(String category)
+    public void setCategory(ItemCategory category)
     {
         this.category = category;
+    }
+    
+    /**
+     * Method untuk menset nilai category
+     * @param category
+     */
+    public void setStatus(ItemStatus status)
+    {
+        this.status = status;
     }
     
     /**
@@ -145,7 +165,12 @@ public class Item
      */
     public void printData()
     {
-        System.out.println(name);
+        System.out.println("==========ITEM=======");
+        System.out.println("ID :" + id);
+        System.out.println("Name :"  + name );
+        System.out.println("Kategori :" + category);
+        System.out.println("Status :" + status);
+        System.out.println("Supplier :" + supplier.getName());
     }
     
 }

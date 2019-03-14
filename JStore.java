@@ -11,8 +11,26 @@ public class JStore
     /**
      * Method untuk main program
      */
-    public void main(String[] args)
-    {        
+    public static void main(String[] args)
+    {
+        Location lokasi = new Location("Serang", "Banten", "Tempat tinggal");
+        Supplier identitas = new Supplier(10, "Rama", "mkharismar98@gmail.com", "087771831612", lokasi);
+        lokasi.printData();
+        identitas.printData();
+        Transaction.orderNewItem(identitas);
+        Transaction.sellItemPaid(DatabaseItem.itemDB);
+        Transaction.orderSecondItem(identitas);
+        Transaction.sellItemUnpaid(DatabaseItem.itemDB);
+        Transaction.orderRefurbishedItem(identitas);
+        Transaction.sellItemInstallment(DatabaseItem.itemDB);
+        
+        //Item barang = new Item(8, "Kharisma", 10, 15000, "tech", identitas);
+        //Invoice unit = new Invoice(12, barang, "12 Maret 2019", 15000); 
+        //identitas.printData();
+        //System.out.println(identitas.getPhoneNumber());
+        //identitas.setName("xxx");
+        //identitas.printData();
+        //DatabaseItem.additem(barang);
     }
     
     /**

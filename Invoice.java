@@ -13,6 +13,8 @@ public class Invoice
     private Item item;
     private String date;
     private int totalPrice;
+    private int totalItem;
+    private InvoiceStatus status;
     
     /**
      * Constructor dari class invoice yang berfungsi untuk
@@ -25,6 +27,7 @@ public class Invoice
         this.item = item;
         this.date = date;
         this.totalPrice = totalPrice;
+        this.status = status;
     }
     
     /**
@@ -64,6 +67,24 @@ public class Invoice
     }
     
     /**
+     * Method untuk mendapatkan nilai totalPrice
+     * @return totalPrice
+     */
+    public int getTotalItem()
+    {
+        return totalItem;
+    }
+    
+    /**
+     * Method untuk mendapatkan nilai totalPrice
+     * @return totalPrice
+     */
+    public InvoiceStatus getInvoiceStatus()
+    {
+        return status;
+    }
+    
+    /**
      * Method untuk menset nilai id
      * @param id
      */
@@ -100,10 +121,33 @@ public class Invoice
     }
     
     /**
+     * Method untuk menset nilai item
+     * @param item
+     */
+    public void setTotalItem(int totalItem)
+    {
+        this.totalItem = totalItem;
+    }
+    
+    /**
+     * Method untuk menset nilai item
+     * @param item
+     */
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+        this.status = status;
+    }
+    
+    /**
      * Method untuk mencetak nilai totalPrice
      */
     public void printData()
     {
-        System.out.println(totalPrice);
+        System.out.println("==========INVOICE=======");
+        System.out.println("ID :" + id);
+        System.out.println("Date :" + date);
+        System.out.println("Item yang terdapat :" + item.getName());
+        System.out.println("Total harga :" + totalPrice);
+        System.out.println("Status :" + status);
     }
 }
