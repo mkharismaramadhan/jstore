@@ -18,7 +18,7 @@ public class DatabaseItem
      * @param item
      * @return true
      */
-    public static boolean additem(Item item)
+    public static boolean addItem(Item item)
     {
         itemDB = item;
         if (itemDB == item)

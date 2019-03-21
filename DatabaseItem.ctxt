@@ -2,7 +2,7 @@
 comment0.target=DatabaseItem
 comment0.text=\r\n\ Class\ DatabaseItem\r\n\ Berisi\ mengenai\ database\ item\r\n\ @author\ M.\ Kharisma\ Ramadhan\r\n\ @version\ 1.0\r\n\ since\ 2019\r\n
 comment1.params=item
-comment1.target=boolean\ additem(Item)
+comment1.target=boolean\ addItem(Item)
 comment1.text=\r\n\ Method\ untuk\ menambahkan\ item\r\n\ @param\ item\r\n\ @return\ true\r\n
 comment2.params=itemDB
 comment2.target=boolean\ removeItem(Item)
