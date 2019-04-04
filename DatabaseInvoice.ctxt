@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=DatabaseInvoice
+comment0.text=\r\n\ Merupakan\ Class\ DatabaseInvoice.\r\n\r\n\ @author\ M.\ Kharisma\ Ramadhan\r\n\ @version\ 28/02/2019\r\n
+comment1.params=invoice
+comment1.target=boolean\ addInvoice(Invoice)
+comment1.text=\r\n\ Method\ of\ class\ DatabaseInvoice\r\n\ @return\ true\r\n
+comment2.params=invoice
+comment2.target=boolean\ removeInvoice(Invoice)
+comment3.params=
+comment3.target=Invoice\ getInvoice()
+comment3.text=\r\n\ Method\ of\ class\ DatabaseInvoice\r\n\ @return\ supplier\r\n
+numComments=4

@@ -5,31 +5,32 @@
  * @version 1.0
  * since 2019
  */
+import java.util.Calendar;
+
 public abstract class Invoice
 {
     // instance variables - replace the example below with your own
    
     private int id;
     private Item item;
-    private String date;
+    private Calendar date;
     protected int totalPrice;
     private int totalItem;
-    private InvoiceStatus status;
-    private InvoiceType type;
+    //private InvoiceStatus status;
+    //private InvoiceType type;
     
     /**
      * Constructor dari class invoice yang berfungsi untuk
      * menset variabel
      * @param id, item, date, totalPrice
      */
-    public Invoice(int id, Item item, String date, int totalItem,
-    int totalPrice)
+    public Invoice(int id, Item item, int totalItem)
     {
-        this.id = id;
-        this.item = item;
-        this.date = date;
-        this.totalItem = totalItem;
-        this.totalPrice = totalPrice;
+       this.id = id;
+       this.item = item;
+       this.totalItem = totalItem;
+       this.date = Calendar.getInstance();
+       setTotalPrice(totalItem*item.getPrice());
     }
     
     /**
@@ -54,7 +55,7 @@ public abstract class Invoice
      * Method untuk mendapatkan nilai date
      * @return date
      */
-    public String getDate()
+    public Calendar getDate()
     {
         return date;
     }
@@ -77,6 +78,7 @@ public abstract class Invoice
         return totalItem;
     }
     
+    /*
     public InvoiceStatus getInvoiceStatus()
     {
         return status;
@@ -86,6 +88,7 @@ public abstract class Invoice
     {
         return type;
     }
+    */
     
     /**
      * Method untuk menset nilai id
@@ -109,7 +112,7 @@ public abstract class Invoice
      * Method untuk menset nilai date
      * @param date
      */
-    public void setDate(String date)
+    public void setDate(Calendar date)
     {
         this.date = date;
     }
@@ -136,14 +139,15 @@ public abstract class Invoice
      * Method untuk menset nilai item
      * @param item
      */
-    public void setInvoiceStatus(InvoiceStatus status)
+    /*public void setInvoiceStatus(InvoiceStatus status)
     {
         this.status = status;
     }
+    */
     
     /**
      * Method untuk mencetak nilai totalPrice
      */
-    public abstract void printData();
+    public abstract String toString();
 
 }

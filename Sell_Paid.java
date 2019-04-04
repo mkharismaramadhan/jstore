@@ -10,15 +10,20 @@ public class Sell_Paid extends Invoice
     // instance variables - replace the example below with your own
     private static final InvoiceType INVOICE_TYPE = InvoiceType.Sell;
     private static final InvoiceStatus INVOICE_STATUS = InvoiceStatus.Paid;
-
+    private Customer customer;
+    
     /**
      * Constructor for objects of class Sell_Paid
      */
-    public Sell_Paid(int id, Item item, String date, int totalItem,
-    int totalPrice)
+    public Sell_Paid(int id, Item item, int totalItem,
+    Customer customer)
     {
-        super(id, item, date, totalItem, totalPrice);
-
+        super(id, item, totalItem);
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
     }
 
     public InvoiceStatus getInvoiceStatus()
@@ -33,14 +38,18 @@ public class Sell_Paid extends Invoice
         
     }
     
-    public void printData()
+    public void setCustomer(Customer customer)
     {
-        System.out.println("==========Sell and Paid=======");
-        System.out.println("ID :" + getId());
-        System.out.println("Date :" + getDate());
-        System.out.println("Item :" + getItem().getName());
-        System.out.println("Invoice Status :" + INVOICE_STATUS);
-        System.out.println("Invoice Type :" + INVOICE_TYPE);
-        System.out.println("Total Harga :" + getTotalPrice());
+        this.customer = customer;
+    }
+    
+    public String toString()
+    {
+       return "===== Invoice =====" + "ID: " + this.getId() + "Item: " + this.getItem().getName() + "Amount:"
+                + this.getTotalItem() + "Buy Date: " + this.getDate() + "Price: " + this.getItem().getPrice()
+                + "Price total: " + this.getTotalPrice() + "Supplier ID: " + this.getItem().getSupplier().getId()
+                + "Supplier name: " + this.getItem().getSupplier().getName() + "Customer ID: "
+                + this.getCustomer().getId() + "Customer name: " + this.getCustomer().getName() + "status: "
+                + this.INVOICE_STATUS + "Sell success";
     }
 }

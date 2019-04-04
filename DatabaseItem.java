@@ -10,7 +10,7 @@
 public class DatabaseItem
 {
     // instance variables - replace the example below with your own
-    private static String[] listItem;
+    private static Item[] listItem;
     public static Item itemDB;
 
     /**
@@ -50,7 +50,7 @@ public class DatabaseItem
      * Method untuk mengambil nilai list item
      * @return listItem
      */
-    public String[] getItemDatabase()
+    public Item[] getItemDatabase()
     {
         return listItem;
     }

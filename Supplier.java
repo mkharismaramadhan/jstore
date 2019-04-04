@@ -123,14 +123,10 @@ public class Supplier
     /**
      * Method untuk mencetak nama
      */
-    public void printData()
+    public String toString()
     {
-        System.out.println("==========SUPPLIER=======");
-        System.out.println("ID :" + id);
-        System.out.println("Name :" + name);
-        System.out.println("Email :" + email);
-        System.out.println("No telpon :" + phoneNumber);
-        System.out.println("Lokasi Supplier :" + location.getCity());
+        return "ID: " + id + "\nName: " + name + "\nEmail: " + email +
+        "\nNo Telepon: " + phoneNumber + "\nLokasi Supplier: " + location.getCity();
     }
      
  

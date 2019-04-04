@@ -1,10 +1,7 @@
 #BlueJ class context
 comment0.target=JStore
 comment0.text=\r\n\ Class\ JStore\r\n\ Berisi\ mengenai\ fungsi\ utama\ JStore\r\n\ @author\ M.\ Kharisma\ Ramadhan\r\n\ @version\ 1.0\r\n\ since\ 2019\r\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment1.text=\r\n\ Method\ untuk\ main\ program\r\n
-comment2.params=
-comment2.target=JStore()
-comment2.text=\r\n\ Constructor\ dari\ JStore\r\n
-numComments=3
+comment1.params=
+comment1.target=JStore()
+comment1.text=\ Location\ lokasi\ \=\ new\ Location("Serang",\ "Banten",\ "Tempat\ tinggal");\r\n\ \ \ \ \ \ \ \ Supplier\ identitas\ \=\ new\ Supplier(10,\ "Rama",\ "mkharismar98@gmail.com",\ "087771831612",\ lokasi);\r\n\ \ \ \ \ \ \ \ Item\ item1\ \=\ new\ Item(10,\ "Kharisma",\ 10,\ 15000,\ ItemCategory.Electronics,\ ItemStatus.New,\ identitas);\r\n\ \ \ \ \ \ \ \ DatabaseItem.addItem(item1);\r\n\ \ \ \ \ \ \ \ Transaction.orderNewItem(item1);\r\n\ \ \ \ \ \ \ \ Transaction.sellItemPaid(item1);\r\n\ \ \ \ \ \ \ \ Transaction.sellItemUnpaid(item1);\r\n\ \ \ \ \ \ \ \ Transaction.sellItemInstallment(item1);\r\n\ \ \ \ \ \ \ \ //Transaction.sellItemPaid(DatabaseItem.itemDB);\r\n\ \ \ \ \ \ \ \ //Transaction.orderSecondItem(identitas);\r\n\ \ \ \ \ \ \ \ //Transaction.sellItemUnpaid(DatabaseItem.itemDB);\r\n\ \ \ \ \ \ \ \ //Transaction.orderRefurbishedItem(identitas);\r\n\ \ \ \ \ \ \ \ //Transaction.sellItemInstallment(DatabaseItem.itemDB);\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ //Item\ barang\ \=\ new\ Item(8,\ "Kharisma",\ 10,\ 15000,\ "tech",\ identitas);\r\n\ \ \ \ \ \ \ \ //Invoice\ unit\ \=\ new\ Invoice(12,\ barang,\ "12\ Maret\ 2019",\ 15000);\ \r\n\ \ \ \ \ \ \ \ //identitas.printData();\r\n\ \ \ \ \ \ \ \ //System.out.println(identitas.getPhoneNumber());\r\n\ \ \ \ \ \ \ \ //identitas.setName("xxx");\r\n\ \ \ \ \ \ \ \ //identitas.printData();\r\n\ \ \ \ \ \ \ \ //DatabaseItem.additem(barang);\r\n\ \ \ \ }\r\n\ \ \ \ \r\n\ \ \ \ /**\r\n\ Constructor\ dari\ JStore\r\n
+numComments=2

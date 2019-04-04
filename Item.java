@@ -163,14 +163,10 @@ public class Item
     /**
      * Method untuk mencetak nama item
      */
-    public void printData()
+    public String toString()
     {
-        System.out.println("==========ITEM=======");
-        System.out.println("ID :" + id);
-        System.out.println("Name :"  + name );
-        System.out.println("Kategori :" + category);
-        System.out.println("Status :" + status);
-        System.out.println("Supplier :" + supplier.getName());
+        return "ID: " + id + "\nNama: " + name + "\nKategori: " + category + 
+        "\nStatus: " + status + "\nSupplier: " + supplier.getName();
     }
     
 }

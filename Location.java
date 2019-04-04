@@ -83,11 +83,8 @@ public class Location
     /**
      * Method untuk mencetak nilai province
      */
-    public void printData()
+    public String toString()
     {
-        System.out.println("==========LOCATION=======");
-        System.out.println("Provinsi :" + province);
-        System.out.println("Kota :" + city);
-        System.out.println("Deksripsi :" + description);
+        return "Provinsi: " + province + "\nKota: " + city + "\nDeskripsi: " + description; 
     }
 }

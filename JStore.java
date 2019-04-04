@@ -11,9 +11,9 @@ public class JStore
     /**
      * Method untuk main program
      */
-    public static void main(String[] args)
-    {
-        Location lokasi = new Location("Serang", "Banten", "Tempat tinggal");
+    //public static void main(String[] args)
+    //{
+       /* Location lokasi = new Location("Serang", "Banten", "Tempat tinggal");
         Supplier identitas = new Supplier(10, "Rama", "mkharismar98@gmail.com", "087771831612", lokasi);
         Item item1 = new Item(10, "Kharisma", 10, 15000, ItemCategory.Electronics, ItemStatus.New, identitas);
         DatabaseItem.addItem(item1);
