@@ -6,16 +6,19 @@
  * since 2019
  */
 import java.util.Calendar;
+import java.util.ArrayList;
 
 public abstract class Invoice
 {
     // instance variables - replace the example below with your own
    
     private int id;
-    private Item item;
     private Calendar date;
     protected int totalPrice;
-    private int totalItem;
+    private ArrayList<Integer> item = new ArrayList<Integer>();
+    //private int totalItem;
+    private boolean isActive;
+    private Customer customer;
     //private InvoiceStatus status;
     //private InvoiceType type;
     
@@ -24,13 +27,14 @@ public abstract class Invoice
      * menset variabel
      * @param id, item, date, totalPrice
      */
-    public Invoice(int id, Item item, int totalItem)
+    public Invoice(ArrayList<Integer> item)
     {
-       this.id = id;
+       //this.id = id;
        this.item = item;
-       this.totalItem = totalItem;
-       this.date = Calendar.getInstance();
-       setTotalPrice(totalItem*item.getPrice());
+       id = DatabaseInvoice.getLastInvoiceID()+1;
+       //this.totalItem = totalItem;
+       //this.date = Calendar.getInstance();
+       //setTotalPrice(totalItem*item.getPrice());
     }
     
     /**
@@ -46,7 +50,7 @@ public abstract class Invoice
      * Method untuk mendapatkan nilai item
      * @return item
      */
-    public Item getItem()
+    public ArrayList<Integer> getItem()
     {
         return item;
     }
@@ -69,15 +73,29 @@ public abstract class Invoice
         return totalPrice;
     }
     
+    abstract public InvoiceStatus getInvoiceStatus();
+    
+    abstract public InvoiceType getInvoiceType();
+    
+    public boolean getIsActive()
+    {
+        return isActive;
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
     /**
      * Method untuk mendapatkan nilai totalPrice
      * @return totalPrice
      */
-    public int getTotalItem()
+    /*public int getTotalItem()
     {
         return totalItem;
     }
-    
+    */
     /*
     public InvoiceStatus getInvoiceStatus()
     {
@@ -103,7 +121,7 @@ public abstract class Invoice
      * Method untuk menset nilai item
      * @param item
      */
-    public void setItem(Item item)
+    public void setItem(ArrayList<Integer> item)
     {
         this.item = item;
     }
@@ -123,17 +141,32 @@ public abstract class Invoice
      */
     public void setTotalPrice (int totalPrice)
     {
-        this.totalPrice = totalPrice;
+         for(Integer invoice : item)
+        {
+            totalPrice=totalPrice+DatabaseItem.getItemFromID(invoice).getPrice();
+        }
     }
     
-    /**
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+    }
+    
+    public void setIsActive(boolean isActive)
+    {
+        this.isActive = isActive;
+    }
+    
+    
+    
+    /*/**
      * Method untuk menset nilai item
      * @param item
-     */
+     
     public void setTotalItem(int totalItem)
     {
         this.totalItem = totalItem;
     }
+    */
     
     /**
      * Method untuk menset nilai item

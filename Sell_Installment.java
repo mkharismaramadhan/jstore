@@ -5,23 +5,25 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
 public class Sell_Installment extends Invoice
 {
-    private InvoiceType INVOICE_TYPE = InvoiceType.Sell;
-    private InvoiceStatus INVOICE_STATUS = InvoiceStatus.Installment;
+    private static InvoiceType INVOICE_TYPE = InvoiceType.Sell;
+    private static InvoiceStatus INVOICE_STATUS = InvoiceStatus.Installment;
     private int installmentPeriod;
     private int installmentPrice;
     private Customer customer;
-
+    private boolean isActive;
+    
     /**
      * Constructor for objects of class Sell_Installment
      */
-    public Sell_Installment(int id, Item item, int totalItem, 
-    int installmentPeriod, Customer customer)
+    public Sell_Installment(ArrayList<Integer> item, int InstallmentPeriod, Customer customer)
     {
-        super(id, item, totalItem);
+        super(item);
         this.installmentPeriod = installmentPeriod;
         this.customer = customer;
+        isActive = true;
     }
     
     public int getInstallmentPeriod()
@@ -70,12 +72,26 @@ public class Sell_Installment extends Invoice
     
     public String toString()
     {
-         return "===== Invoice =====" + "ID: " + this.getId() + "Item: " + this.getItem().getName() + "Amount:"
-                + this.getTotalItem() + "Buy Date: " + this.getDate() + "Price: " + this.getItem().getPrice()
-                + "Price total: " + this.getTotalPrice() + "Supplier ID: " + this.getItem().getSupplier().getId()
-                + "Supplier name: " + this.getItem().getSupplier().getName() + "Customer ID: "
-                + this.getCustomer().getId() + "Customer name: " + this.getCustomer().getName() + "status: "
-                + this.INVOICE_STATUS + "Installment Period: " + this.installmentPeriod + "Sell success";
+         String string="==========INVOICE=======";
+        string += "\nID ="+getId();
+        string += "\nBuy date =" + getDate();
+        for (Integer invoice : getItem())
+        {
+            Item item = DatabaseItem.getItemFromID(invoice.intValue());
+            string += "\nItem: " + item.getName();
+            string += "\nAmount: " + getItem().size();
+            string += "\nPrice: " + item.getPrice();
+            string += "\nSupplier ID: " + item.getSupplier().getId();
+            string += "\nSupplier Name: " + item.getSupplier().getName();
+        }
+        string += "\nPrice Total: " + getTotalPrice();
+        string += "\nInstallment Price: " + installmentPrice;
+        string += "\nCustomer ID: " + customer.getId();
+        string += "\nCustomer Name: " + customer.getName();
+        string += "\nStatus: " + INVOICE_STATUS;
+        string += "\nInstallment period: " + installmentPeriod;
+        string += "\nSell Success";
+        return string;
     }
 
 }

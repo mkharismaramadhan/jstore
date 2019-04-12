@@ -22,23 +22,23 @@ public class Item
      * Constructor dari class yang menset variabel
      * @param id, name, stock, price, category, supplier
      */
-    public Item(int id, String name, int stock, int price,
-    ItemCategory category, ItemStatus status, Supplier supplier)
+    public Item(String name, int stock, ItemStatus status, int price,
+    Supplier supplier, ItemCategory category)
     {
-        this.id = id;
+        id=DatabaseItem.getLastItemID()+1;
         this.name = name;
         this.stock = stock;
-        this.price = price;
-        this.category = category;
         this.status = status;
-        this.supplier = supplier;        
+        this.price = price;
+        this.supplier = supplier;
+        this.category = category;       
     }
     
     /**
      * Method untuk mendapatkan nilai ID
      * @return id
      */
-    public int getID() 
+    public int getId() 
     {
         return id;
     }

@@ -22,7 +22,7 @@
 * </p>
 * 
 * 
-* @author   Mahdi Yusuf
+* @author   M. Kharisma Ramadhan
 * @version  1.0
 * @since    2019/03/14
 */
@@ -31,6 +31,11 @@ import java.util.*;
 public class Transaction{
     
     public static void orderNewItem(Item item){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Buy_Paid(itemID);
+        DatabaseInvoice.addInvoice(invoice);
+        
         /*Invoice invoiceNewItem = new Buy_Paid(11, item, "13/12/2019", 13, item.getPrice());
         
         if (invoiceNewItem instanceof Sell_Paid)
@@ -47,6 +52,10 @@ public class Transaction{
     }
 
     public static void orderSecondItem(Item item){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Buy_Paid(itemID);
+        DatabaseInvoice.addInvoice(invoice);
         /*Invoice invoiceSecondItem = new Buy_Paid(12, item, "13/12/2019", 14, item.getPrice());
         
         if (invoiceSecondItem instanceof Sell_Paid)
@@ -63,6 +72,10 @@ public class Transaction{
     }
 
     public static void orderRefurbishedItem(Item item){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Buy_Paid(itemID);
+        DatabaseInvoice.addInvoice(invoice);
         /*Invoice invoiceRefurbishedItem = new Buy_Paid(13, item, "13/12/2019", 15, item.getPrice());
         
         if (invoiceRefurbishedItem instanceof Sell_Paid)
@@ -79,6 +92,10 @@ public class Transaction{
     }
 
     public static void sellItemPaid(Item item, Customer customer){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Sell_Paid(itemID,customer);
+        DatabaseInvoice.addInvoice(invoice);
         /*Invoice invoiceSellItemPaid = new Sell_Paid(14, item, "13/12/2019", 16, item.getPrice());
         System.out.println("=========");
         invoiceSellItemPaid.printData();
@@ -86,6 +103,10 @@ public class Transaction{
     }
 
     public static void sellItemUnpaid(Item item, Customer customer){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Sell_Unpaid(itemID,customer);
+        DatabaseInvoice.addInvoice(invoice);
         /*Invoice invoiceSellItemUnpaid = new Sell_Unpaid(14, item, "13/12/2019", 16, item.getPrice(), "14/12/2019");
         System.out.println("=========");
         invoiceSellItemUnpaid.printData();
@@ -93,9 +114,35 @@ public class Transaction{
     }
 
     public static void sellItemInstallment(Item item, Customer customer, int installmentPeriod){
+        ArrayList<Integer> itemID = new ArrayList<Integer>();
+        itemID.add(item.getId());
+        Invoice invoice=new Sell_Installment(itemID,installmentPeriod,customer);
+        DatabaseInvoice.addInvoice(invoice);
         /*Invoice invoiceSellItemInstallment = new Sell_Installment(14, item, "13/12/2019", 16, item.getPrice(), 13);
         System.out.println("=========");
         invoiceSellItemInstallment.printData();
         item.printData();*/
+    }
+    
+    public boolean finishTransaction(Invoice invoice){
+        boolean value=false;
+        for (Invoice invoiceDB : DatabaseInvoice.getInvoiceDatabase()){
+            if (invoiceDB.getId()==invoice.getId()){
+                invoice.setIsActive(false);
+                System.out.print(invoice.getIsActive());
+                value=true;
+            }
+        }
+        return value;
+    }
+    public boolean cancelTransaction(Invoice invoice){
+        boolean value=false;
+        for (Invoice invoiceDB : DatabaseInvoice.getInvoiceDatabase()){
+            if (invoiceDB.getId()==invoice.getId()){
+                DatabaseInvoice.removeInvoice(invoice.getId());
+                value=true;
+            }
+        }
+        return value;
     }
 }

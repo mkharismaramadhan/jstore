@@ -5,18 +5,21 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
 public class Buy_Paid extends Invoice
 {
     // instance variables - replace the example below with your own
     private static final InvoiceType INVOICE_TYPE = InvoiceType.Buy;
     private static final InvoiceStatus INVOICE_STATUS = InvoiceStatus.Paid;
-
+    private boolean isActive;
+    
     /**
      * Constructor for objects of class Buy_Paid
      */
-    public Buy_Paid(int id, Item item, int totalItem)
+    public Buy_Paid(ArrayList<Integer> item)
     {
-        super(id, item, totalItem);
+        super(item);
+        isActive = false;
     }
 
     public InvoiceStatus getInvoiceStatus()
@@ -33,17 +36,22 @@ public class Buy_Paid extends Invoice
     
     public String toString()
     {
-        
-        return "==========Buy and Paid======="  
-        + "\nID :" + getId()
-        + "\nItem :" + getItem().getName()
-        + "\nAmount :" + getTotalItem()
-        + "\nBuy date :" + getDate()
-        + "\nPrice :" + getItem().getPrice()
-        + "\nPrice Total :" + getTotalPrice()
-        + "\nSupplier ID :" + getItem().getSupplier().getId()
-        + "\nSupplier Name :" + getItem().getSupplier().getName()
-        + "\nStatus = PAID\nBuy Success";
+        String string="==========INVOICE=======";
+        string += "\nID ="+getId();
+        string += "\nBuy date =" + getDate();
+        for (Integer invoice : getItem())
+        {
+            Item item = DatabaseItem.getItemFromID(invoice.intValue());
+            string += "\nItem: " + item.getName();
+            string += "\nAmount: " + getItem().size();
+            string += "\nPrice: " + item.getPrice();
+            string += "\nSupplier ID: " + item.getSupplier().getId();
+            string += "\nSupplier Name: " + item.getSupplier().getName();
+        }
+        string += "\nPrice Total: " + getTotalPrice();
+        string += "\nStatus: " + INVOICE_STATUS;
+        string += "\nBuy Success";
+        return string;
     }
 
 }

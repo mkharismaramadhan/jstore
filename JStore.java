@@ -11,11 +11,13 @@ public class JStore
     /**
      * Method untuk main program
      */
-    //public static void main(String[] args)
-    //{
-       /* Location lokasi = new Location("Serang", "Banten", "Tempat tinggal");
-        Supplier identitas = new Supplier(10, "Rama", "mkharismar98@gmail.com", "087771831612", lokasi);
-        Item item1 = new Item(10, "Kharisma", 10, 15000, ItemCategory.Electronics, ItemStatus.New, identitas);
+    public static void main(String[] args)
+    {
+       //Location lokasi = new Location("Serang", "Banten", "Tempat tinggal");
+       //Supplier x = new Supplier("Rama", "mkharismar98@gmail.com", "+629877718316", lokasi);
+       //System.out.println(x);
+    }
+        /*Item item1 = new Item(10, "Kharisma", 10, 15000, ItemCategory.Electronics, ItemStatus.New, identitas);
         DatabaseItem.addItem(item1);
         Transaction.orderNewItem(item1);
         Transaction.sellItemPaid(item1);
@@ -38,8 +40,9 @@ public class JStore
     
     /**
      * Constructor dari JStore
-     */
+    
     public JStore()
     {
     }
+    */
 }

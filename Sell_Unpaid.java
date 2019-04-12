@@ -6,26 +6,28 @@
  * @version (a version number or a date)
  */
 import java.util.Calendar;
+import java.util.ArrayList;
 
 public class Sell_Unpaid extends Invoice
 {
-    private InvoiceType INVOICE_TYPE;
-    private InvoiceStatus INVOICE_STATUS;
+    private static InvoiceType INVOICE_TYPE;
+    private static InvoiceStatus INVOICE_STATUS;
     private Calendar dueDate;
     private Customer customer;
-
+    private boolean isActive;
+    
     /**
      * Constructor for objects of class Sell_Unpaid
      */
-    public Sell_Unpaid(int id, Item item, int totalItem,
+    public Sell_Unpaid(ArrayList<Integer> item,
     Customer customer)
     {
-        super(id, item, totalItem);
+        super(item);
         this.dueDate = Calendar.getInstance();
         this.dueDate.add(Calendar.DATE,+1);
         INVOICE_TYPE = InvoiceType.Sell;
         INVOICE_STATUS = InvoiceStatus.Unpaid;
-        
+        isActive = true;
     }
 
     public InvoiceStatus getInvoiceStatus()
@@ -62,12 +64,24 @@ public class Sell_Unpaid extends Invoice
     
     public String toString()
     {
-        return "===== Invoice =====" + "ID: " + this.getId() + "Item: " + this.getItem().getName() + "Amount:"
-                + this.getTotalItem() + "Buy Date: " + this.getDate() + "Price: " + this.getItem().getPrice()
-                + "Price total: " + this.getTotalPrice() + "Supplier ID: " + this.getItem().getSupplier().getId()
-                + "Supplier name: " + this.getItem().getSupplier().getName() + "Customer ID: "
-                + this.getCustomer().getId() + "Customer name: " + this.getCustomer().getName() + "Status: "
-                + this.INVOICE_STATUS + "Due date: " + this.dueDate
-                + "If payment is not received by due date, transcation will be canceled";
+        String string="==========INVOICE=======";
+        string += "\nID ="+getId();
+        string += "\nBuy date =" + getDate();
+        for (Integer invoice : getItem())
+        {
+            Item item = DatabaseItem.getItemFromID(invoice.intValue());
+            string += "\nItem: " + item.getName();
+            string += "\nAmount: " + getItem().size();
+            string += "\nPrice: " + item.getPrice();
+            string += "\nSupplier ID: " + item.getSupplier().getId();
+            string += "\nSupplier Name: " + item.getSupplier().getName();
+        }
+        string += "\nPrice Total: " + getTotalPrice();
+        string += "\nCustomer ID: " + customer.getId();
+        string += "\nCustomer Name: " + customer.getName();
+        string += "\nStatus: " + INVOICE_STATUS;
+        string += "\nDue date: " + getdueDate();
+        string += "\nIf payment is not received by dueDate, transaction will be cancelled.";
+        return string;
     }
 }

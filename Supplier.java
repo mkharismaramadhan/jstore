@@ -1,4 +1,5 @@
-
+import java.util.regex.*;
+import java.util.*;
 /**
  * Class Supplier
  * Berisi mengenai Supplier
@@ -20,14 +21,27 @@ public class Supplier
      * menset variabel
      * @param id, name, email, phoneNumber, location
      */
-    public Supplier(int id, String name, String email, 
+    public Supplier(String name, String email, 
     String phoneNumber, Location location)
     {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.location = location;
+        String pattern = "\\+62[\\d]{10,14}$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(phoneNumber);
+        if (m.find())
+        {
+            System.out.println("Data benar");
+            id=DatabaseSupplier.getLastSupplierID()+1;
+            this.name = name;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.location = location;
+        }
+        
+        else
+        {
+            System.out.println("Data salah");
+        }
+       
     }
     
     /**
@@ -129,5 +143,4 @@ public class Supplier
         "\nNo Telepon: " + phoneNumber + "\nLokasi Supplier: " + location.getCity();
     }
      
- 
 }

@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Item
 comment0.text=\r\n\ Class\ Item\r\n\ Berisi\ mengenai\ item\ dari\ jStore\r\n\ @author\ M.\ Kharisma\ Ramadhan\r\n\ @version\ 1.0\r\n\ since\ 2019\r\n
-comment1.params=id\ name\ stock\ price\ category\ status\ supplier
-comment1.target=Item(int,\ java.lang.String,\ int,\ int,\ ItemCategory,\ ItemStatus,\ Supplier)
+comment1.params=name\ stock\ status\ price\ supplier\ category
+comment1.target=Item(java.lang.String,\ int,\ ItemStatus,\ int,\ Supplier,\ ItemCategory)
 comment1.text=\r\n\ Constructor\ dari\ class\ yang\ menset\ variabel\r\n\ @param\ id,\ name,\ stock,\ price,\ category,\ supplier\r\n
 comment10.params=name
 comment10.target=void\ setName(java.lang.String)
@@ -26,7 +26,7 @@ comment16.params=
 comment16.target=java.lang.String\ toString()
 comment16.text=\r\n\ Method\ untuk\ mencetak\ nama\ item\r\n
 comment2.params=
-comment2.target=int\ getID()
+comment2.target=int\ getId()
 comment2.text=\r\n\ Method\ untuk\ mendapatkan\ nilai\ ID\r\n\ @return\ id\r\n
 comment3.params=
 comment3.target=java.lang.String\ getName()

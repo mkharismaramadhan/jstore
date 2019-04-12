@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=Sell_Installment
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Sell_Installment\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=id\ item\ totalItem\ installmentPeriod\ customer
-comment1.target=Sell_Installment(int,\ Item,\ int,\ int,\ Customer)
+comment1.params=item\ InstallmentPeriod\ customer
+comment1.target=Sell_Installment(java.util.ArrayList,\ int,\ Customer)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Sell_Installment\r\n
 comment10.params=
 comment10.target=java.lang.String\ toString()
