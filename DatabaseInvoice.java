@@ -53,14 +53,15 @@ public class DatabaseInvoice
         return value;
     }
     
-    public static boolean removeInvoice(int id)
-    {
-        boolean value = false;
-        for (Invoice invoice : INVOICE_DATABASE){
-            if(invoice.getId()==id && invoice.getIsActive()==true){
-            invoice.setIsActive(false);
-            INVOICE_DATABASE.remove(id);
-            value = true;
+     public static boolean removeInvoice(int id){
+         boolean value = false;
+        for(Invoice invoice : INVOICE_DATABASE){
+            if(invoice.getId() == id){
+                if (invoice.getIsActive() == true) {
+                    invoice.setIsActive(false);
+                }
+                INVOICE_DATABASE.remove(invoice);
+                value = true;
             }
         }
         return value;

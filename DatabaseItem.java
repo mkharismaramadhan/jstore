@@ -84,12 +84,12 @@ public class DatabaseItem
         return value;
     }
     
-    public static ArrayList<Item> getItemFromStatus(Item status)
+    public static ArrayList<Item> getItemFromStatus(ItemStatus status)
     {
         ArrayList<Item> value=null;
         for(Item itemDB : ITEM_DATABASE)
         {
-            if(itemDB.getStatus()==status.getStatus())
+            if(itemDB.getStatus()==status)
             {
                 value.add(itemDB);
             }
