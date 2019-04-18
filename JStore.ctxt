@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=JStore
-comment0.text=\r\n\ Class\ JStore\r\n\ Berisi\ mengenai\ fungsi\ utama\ JStore\r\n\ @author\ M.\ Kharisma\ Ramadhan\r\n\ @version\ 1.0\r\n\ since\ 2019\r\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment1.text=\r\n\ Method\ untuk\ main\ program\r\n
-numComments=2
