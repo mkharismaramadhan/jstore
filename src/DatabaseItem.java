@@ -30,13 +30,13 @@ public class DatabaseItem
      * @param item
      * @return true
      */
-    public static boolean addItem(Item item)
+    public static boolean addItem(Item item) throws ItemAlreadyExistsException
     {
         for(Item itemDB : ITEM_DATABASE)
         {
-            if(item.getName()==itemDB.getName()&&item.getStatus()==itemDB.getStatus()&&item.getSupplier()==itemDB.getSupplier())
+            if(item.getName()==itemDB.getName()&&item.getCategory()==itemDB.getCategory()&&item.getStatus()==itemDB.getStatus()&&item.getSupplier()==itemDB.getSupplier())
             {
-                return false;
+                throw new ItemAlreadyExistsException(item);
             }
         }
         ITEM_DATABASE.add(item);
@@ -108,7 +108,7 @@ public class DatabaseItem
         return null;
     }
     
-    public static boolean removeItem(int id)
+    public static boolean removeItem(int id) throws ItemNotFoundException
     {
         for(Item itemDB : ITEM_DATABASE)
         {
@@ -118,6 +118,6 @@ public class DatabaseItem
                 return true;
             }
         }
-        return false;
+        throw new ItemNotFoundException(id);
     }
 }

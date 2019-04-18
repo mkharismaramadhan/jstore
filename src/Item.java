@@ -12,21 +12,16 @@ public class Item
     // instance variables - replace the example below with your own
     private int id;
     private String name;
-    private int stock;
     private int price;
     private ItemCategory category;
     private ItemStatus status;
     private Supplier supplier;
 
-    /**
-     * Constructor dari class yang menset variabel
-     * @param id, name, stock, price, category, supplier
-     */
-    public Item(String name, int stock, int price, ItemCategory category, ItemStatus status, Supplier supplier)
+
+    public Item(String name, int price, ItemCategory category, ItemStatus status, Supplier supplier)
     {
         id=DatabaseItem.getLastItemID()+1;
         this.name=name;
-        this.stock=stock;
         this.price=price;
         this.category=category;
         this.status=status;
@@ -49,15 +44,6 @@ public class Item
     public String getName()
     {
         return name;
-    }
-    
-    /**
-     * Method untuk mendapatkan nilai stock
-     * @return stock
-     */
-    public int getStock()
-    {
-        return stock;
     }
     
     /**
@@ -113,15 +99,7 @@ public class Item
     {
         this.name = name;
     }
-    
-    /**
-     * Method untuk menset nilai stock
-     * @param stock
-     */
-    public void setStock(int stock)
-    {
-        this.stock = stock;
-    }
+
     
     /**
      * Method untuk menset nilai price
@@ -141,10 +119,7 @@ public class Item
         this.category = category;
     }
     
-    /**
-     * Method untuk menset nilai category
-     * @param category
-     */
+
     public void setStatus(ItemStatus status)
     {
         this.status = status;
@@ -167,7 +142,6 @@ public class Item
         return "==========ITEM======="+
         "\nID :" + id+
         "\nName :"  + name+
-        "\nStok :" + stock+
         "\nKategori :" + category+
         "\nStatus :" + status+
         "\nSupplier :" + this.supplier.getName();

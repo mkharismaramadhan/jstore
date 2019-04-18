@@ -6,24 +6,40 @@
  * since 2019
  */
 import java.util.ArrayList;
-public class JStore
-{
+public class JStore {
     /**
      * Method untuk main program
      */
-    public static void main(String[] args)
-    {
-        Location lokasi = new Location("Serang","Banten","Kota Cabang");
-        DatabaseSupplier.addSupplier(new Supplier("Alex", "alex@gmail.com", "+628124545121", lokasi));
-        DatabaseSupplier.addSupplier(new Supplier("Amin", "amin@gmail.com", "+6287771831112", lokasi));
-        DatabaseSupplier.addSupplier(new Supplier("Tony", "tony@gmail.com", "+6299465121589", lokasi));
-        
-        for(Supplier supplier : DatabaseSupplier.getSupplierDatabase())
-        {
+    public static void main(String[] args) {
+        Location lokasi = new Location("Serang", "Banten", "Kota Cabang");
+        try {
+            DatabaseSupplier.addSupplier(new Supplier("aji", "aji@gmail.com", "+628576590000", lokasi));
+            DatabaseSupplier.addSupplier(new Supplier("toni", "njaya@gmail.com", "+628576592222", lokasi));
+            DatabaseSupplier.addSupplier(new Supplier("roy", "roy@gmail.com", "+628576593333", lokasi));
+            DatabaseSupplier.addSupplier(new Supplier("kevin", "kevin@gmail.com", "+628576593333", lokasi));
+        } catch (SupplierAlreadyExistsException err){
+            System.out.println("==Supplier Already Exists===");
+            System.out.println(err.getExMessage());
+            System.out.println();
+        }
+
+        try {
+            DatabaseCustomer.addCustomer(new Customer("Vincent Sanjaya", "vincent.sanjaya@ui.ac.id", "vincent.sanjaya", "gabolehtau", 1998, 12, 06));
+            DatabaseCustomer.addCustomer(new Customer("Vincent Sans", "vincent.sanjaya@gmail.com", "vincent.sanjaya", "gabolehtau", 1998, 12, 06));
+            DatabaseCustomer.addCustomer(new Customer("Sanjaya Vincent", "sanjaya.vincent@gmail.com", "vincent.sanjaya", "gabolehtau", 1998, 12, 06));
+            DatabaseCustomer.addCustomer(new Customer("Vincent Sanjaya", "vincent.sanjaya@ui.ac.id", "vincent.sanjaya", "gabolehtau", 1998, 12, 06));
+        }catch (CustomerAlreadyExistsException err){
+            System.out.println("===Customer Already Exists===");
+            System.out.println(err.getExMessage());
+            System.out.println();
+        }
+
+        for (Supplier supplier : DatabaseSupplier.getSupplierDatabase()) {
             System.out.println(supplier);
         }
-        
-        DatabaseCustomer.addCustomer(new Customer("Aji","aji@gmail.com","aji","1234",1998,4,21));
+    }
+}
+        /*DatabaseCustomer.addCustomer(new Customer("Aji","aji@gmail.com","aji","1234",1998,4,21));
         DatabaseCustomer.addCustomer(new Customer("Joni","joni@gmail.com","joni","1234",1998,3,27));
         DatabaseCustomer.addCustomer(new Customer("Yusuf","yususf@gmail.com","yusuf","1234",1998,5,26));
         
@@ -78,3 +94,4 @@ public class JStore
     {
     }
 }
+*/

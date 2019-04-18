@@ -21,12 +21,7 @@ public abstract class Invoice
     private Customer customer;
     //private InvoiceStatus status;
     //private InvoiceType type;
-    
-    /**
-     * Constructor dari class invoice yang berfungsi untuk
-     * menset variabel
-     * @param id, item, date, totalPrice
-     */
+
     public Invoice(ArrayList<Integer> item)
     {
        //this.id = id;

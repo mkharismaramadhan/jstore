@@ -16,11 +16,6 @@ public class Supplier
     private String phoneNumber;
     private Location location;
 
-    /**
-     * Constructor dari class supplier yang berfungsi untuk
-     * menset variabel
-     * @param id, name, email, phoneNumber, location
-     */
     public Supplier(String name, String email, 
     String phoneNumber, Location location)
     {
