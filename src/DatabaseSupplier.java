@@ -32,7 +32,6 @@ public class DatabaseSupplier
         for (Supplier temp : SUPPLIER_DATABASE ) {
             if(((temp.getEmail() == supplier.getEmail()) && (temp.getPhoneNumber() == supplier.getPhoneNumber()))){
                 throw new SupplierAlreadyExistsException(supplier);
-//                return false;
             }
         }
         SUPPLIER_DATABASE.add(supplier);
