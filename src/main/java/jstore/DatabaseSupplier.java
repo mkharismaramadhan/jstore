@@ -30,7 +30,7 @@ public class DatabaseSupplier
     public static boolean addSupplier(Supplier supplier) throws SupplierAlreadyExistsException
     {
         for (Supplier temp : SUPPLIER_DATABASE ) {
-            if(((temp.getEmail() == supplier.getEmail()) && (temp.getPhoneNumber() == supplier.getPhoneNumber()))){
+            if(((temp.getEmail().equals(supplier.getEmail())) && (temp.getPhoneNumber().equals(supplier.getPhoneNumber())))){
                 throw new SupplierAlreadyExistsException(supplier);
             }
         }

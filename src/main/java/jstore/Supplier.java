@@ -20,24 +20,11 @@ public class Supplier
     public Supplier(String name, String email, 
     String phoneNumber, Location location)
     {
-        String pattern = "\\+62[\\d]{10,14}$";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(phoneNumber);
-        if (m.find())
-        {
-            System.out.println("Data benar");
             id=DatabaseSupplier.getLastSupplierID()+1;
             this.name = name;
             this.email = email;
             this.phoneNumber = phoneNumber;
             this.location = location;
-        }
-        
-        else
-        {
-            System.out.println("Data salah");
-        }
-       
     }
     
     /**

@@ -17,18 +17,39 @@ public class JStore {
      * Method untuk main program
      */
     public static void main(String[] args) {
-        SpringApplication.run(JStore.class, args);
-        /*Location lokasi = new Location("Serang", "Banten", "Kota Cabang");
+        Location lokasi = new Location("Serang", "Banten", "Kota Cabang");
+
         try {
             DatabaseSupplier.addSupplier(new Supplier("aji", "aji@gmail.com", "+628576590000", lokasi));
             DatabaseSupplier.addSupplier(new Supplier("roy", "roy@gmail.com", "+628576593333", lokasi));
             DatabaseSupplier.addSupplier(new Supplier("kevin", "kevin@gmail.com", "+628576593333", lokasi));
-            DatabaseSupplier.addSupplier(new Supplier("aji", "aji@gmail.com", "+628576590000", lokasi));
-        } catch (SupplierAlreadyExistsException err){
-            System.out.println("==Supplier Already Exists===");
+        } catch (SupplierAlreadyExistsException err) {
+            System.out.println("===Supplier Already Exists===");
             System.out.println(err.getExMessage());
             System.out.println();
         }
+
+        try {
+            DatabaseItem.addItem(new Item("Handphone", 2000, ItemCategory.Electronics, ItemStatus.New, DatabaseSupplier.getSupplier(1)));
+            DatabaseItem.addItem(new Item("Kursi", 3000, ItemCategory.Furniture,ItemStatus.New, DatabaseSupplier.getSupplier(2)));
+            DatabaseItem.addItem(new Item("TV", 4000, ItemCategory.Electronics, ItemStatus.New, DatabaseSupplier.getSupplier(3)));
+            DatabaseItem.addItem(new Item("Radio", 2000, ItemCategory.Electronics, ItemStatus.New, DatabaseSupplier.getSupplier(1)));
+        } catch (ItemAlreadyExistsException err){
+            System.out.println("===Item Already Exists===");
+            System.out.println(err.getExMessage());
+            System.out.println();
+        }
+
+        ArrayList<Integer> item = new ArrayList<Integer>();
+        item.add(1);
+        item.add(2);
+        item.add(3);
+
+        SpringApplication.run(JStore.class, args);
+
+
+
+        /*
 
         try {
             DatabaseCustomer.addCustomer(new Customer("Rama","rama@gmail.com","rama","1234", 2019, 9, 10));
