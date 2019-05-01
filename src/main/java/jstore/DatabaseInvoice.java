@@ -76,7 +76,7 @@ public class DatabaseInvoice
                 {
                     invoice.setIsActive(false);
                 }
-                INVOICE_DATABASE.remove(id);
+                INVOICE_DATABASE.remove(invoice);
                 return true;
             }
         }

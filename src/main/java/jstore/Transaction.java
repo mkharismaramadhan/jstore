@@ -88,14 +88,20 @@ public class Transaction{
         return false;
     }
 
-    public static boolean cancelTransaction(Invoice invoice) throws InvoiceNotFoundException {
-        for (Invoice invoiceDB : DatabaseInvoice.getInvoiceDatabase()){
-               if (invoiceDB.getId()==invoice.getId()&&(invoice.getInvoiceStatus().equals("Installment")||invoice.getInvoiceStatus().equals("Unpaid"))){
-                   DatabaseInvoice.removeInvoice(invoice.getId());
-                   System.out.print(invoice.getIsActive());
-                   return true;
-               }
-           }
-        return false;
+    public static boolean cancelTransaction (Invoice invoice){
+        Invoice invoiceDB = DatabaseInvoice.getInvoice(invoice.getId());
+        if (invoiceDB != null){
+            try {
+                DatabaseInvoice.removeInvoice(invoiceDB.getId());
+                return true;
+            }catch (InvoiceNotFoundException e){
+                System.out.println(e.getExMessage());
+                return false;
+            }
+
+        }
+        else{
+            return false;
+        }
     }
 }
