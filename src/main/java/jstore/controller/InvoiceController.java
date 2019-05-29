@@ -10,16 +10,25 @@ import java.util.Calendar;
 @RestController
 public class InvoiceController {
 
-    @RequestMapping("/invoicecustomer/{id_customer}")
+    @RequestMapping(value = "/invoicehistorycust/{id_customer}", method = RequestMethod.GET)
+    public ArrayList<Invoice> invoiceHistoryCust(@PathVariable int id_customer) {
+        //   System.out.println("id cust = "+DatabaseCustomerPostgre.getCustomer(id_customer));
+
+
+        return DatabaseInvoice.getInactiveOrder(DatabaseCustomerPostgre.getCustomer(id_customer));
+
+
+    }
+
+    @RequestMapping(value = "/invoicecustomer/{id_customer}", method = RequestMethod.GET)
     public ArrayList<Invoice> invoiceCust(@PathVariable int id_customer) {
-        ArrayList<Invoice> invoice = null;
-        try {
-            invoice = DatabaseInvoice.getActiveOrder(DatabaseCustomer.getCustomer(id_customer));
-            return invoice;
-        } catch (CustomerDoesntHaveActiveException e) {
-            System.out.println(e.getExMessage());
-        }
-        return null;
+        //   ArrayList<Invoice> invoice = new ArrayList<Invoice>();
+        //   try {
+        //        invoice = DatabaseInvoice.getActiveOrder(DatabaseCustomerPostgre.getCustomer(id_customer));
+        //   } catch (CustomerDoesntHaveActiveInvoiceException e) {
+        //       e.getExMessage();
+        //   }
+        return DatabaseInvoice.getActiveOrder(DatabaseCustomerPostgre.getCustomer(id_customer));
     }
 
     @RequestMapping("/invoice/{id_invoice}")
@@ -30,9 +39,9 @@ public class InvoiceController {
 
     @RequestMapping(value = "/createinvoicepaid", method = RequestMethod.POST)
     public Invoice createInvoicePaid(@RequestParam(value="listitem") ArrayList<Integer> listItem,
-                                     @RequestParam(value="id") int id_customer){
+                              @RequestParam(value="id") int id_customer){
         try {
-            boolean res = DatabaseInvoice.addInvoice(new Sell_Paid(listItem, DatabaseCustomer.getCustomer(id_customer)));
+            boolean res = DatabaseInvoice.addInvoice(new Sell_Paid(listItem, DatabaseCustomerPostgre.getCustomer(id_customer)));
             if(res == true){
                 return DatabaseInvoice.getInvoice(DatabaseInvoice.getLastInvoiceID());
             }
@@ -44,9 +53,9 @@ public class InvoiceController {
 
     @RequestMapping(value = "/createinvoiceunpaid", method = RequestMethod.POST)
     public Invoice createInvoiceUnpaid(@RequestParam(value="listitem") ArrayList<Integer> listItem,
-                                       @RequestParam(value="id") int id_customer){
+                                     @RequestParam(value="id") int id_customer){
         try {
-            boolean res = DatabaseInvoice.addInvoice(new Sell_Unpaid(listItem, DatabaseCustomer.getCustomer(id_customer)));
+            boolean res = DatabaseInvoice.addInvoice(new Sell_Unpaid(listItem, DatabaseCustomerPostgre.getCustomer(id_customer)));
             if(res == true){
                 return DatabaseInvoice.getInvoice(DatabaseInvoice.getLastInvoiceID());
             }
@@ -61,7 +70,7 @@ public class InvoiceController {
                                             @RequestParam(value="period") int installment_period,
                                             @RequestParam(value="id") int id_customer){
         try {
-            boolean res = DatabaseInvoice.addInvoice(new Sell_Installment(listItem, installment_period,DatabaseCustomer.getCustomer(id_customer)));
+            boolean res = DatabaseInvoice.addInvoice(new Sell_Installment(listItem, installment_period,DatabaseCustomerPostgre.getCustomer(id_customer)));
             if(res == true){
                 return DatabaseInvoice.getInvoice(DatabaseInvoice.getLastInvoiceID());
             }
@@ -72,10 +81,13 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/canceltransaction", method = RequestMethod.POST)
-    public Invoice cancelTransaction(@RequestParam(value="invoiceID") int invoiceID)
-    {
-        Transaction.cancelTransaction(DatabaseInvoice.getInvoice(invoiceID));
-        return DatabaseInvoice.getInvoice(invoiceID);
+    public Invoice cancelTransaction(@RequestParam(value="id") int id_invoice){
+        boolean res = Transaction.cancelTransaction(DatabaseInvoice.getInvoice(id_invoice));
+        if (res == true){
+            System.out.println("Invoice ini telah dibatalkan");
+            return DatabaseInvoice.getInvoice(id_invoice);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/finishtransaction", method = RequestMethod.POST)

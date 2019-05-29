@@ -1,22 +1,26 @@
 package jstore.controller;
 
 import jstore.*;
-import java.util.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 @RestController
-public class SupplierController
-{
-    @RequestMapping(value = "/suppliers", method = RequestMethod.GET)
+public class SupplierController {
+
+
+    @RequestMapping("/suppliers")
     public ArrayList<Supplier> supplierList()
     {
-        return DatabaseSupplier.getSupplierDatabase();
+        ArrayList<Supplier> suppliers = DatabaseSupplier.getSupplierDatabase();
+        return suppliers;
     }
 
-    @RequestMapping(value = "/suppliers/{id}", method = RequestMethod.GET)
-    public Supplier getSupplier(@PathVariable int id)
-    {
-        return DatabaseSupplier.getSupplier(id);
+    @RequestMapping("/suppliers/{id_supplier}")
+    public Supplier getSupplier(@PathVariable int id_supplier) {
+        Supplier supplier = DatabaseSupplier.getSupplier(id_supplier);
+        return supplier;
     }
 }

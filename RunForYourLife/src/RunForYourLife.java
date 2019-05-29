@@ -1,62 +1,36 @@
 public class RunForYourLife implements Runnable {
-    private Thread t;
-    private String name;
-    private String threadName;
-    private int checkpoint;
-    private double weight;
+    private String pemain;
+    private Thread thread;
+    private double angka;
 
-    public RunForYourLife(String name, double weight) {
-        this.name=name;
-        this.threadName=name+"Thread";
-        this.weight=weight;
-        this.checkpoint=0;
+    public RunForYourLife(String pemain, double angka)
+    {
+        this.pemain = pemain;
+        this.angka = angka;
     }
 
-    public void run(){
-        //First Time Thread Running
-        System.out.println(name + ", go!");
-
-        //Start Running
-        while(getCheckpoint() != 20){
-            //Delay Running
-            int randNumber = (int) Math.round(LetsGo.getRandomNumber()*weight);
-            try {
-                Thread.sleep(randNumber);
-            } catch (InterruptedException e) {
-                System.out.println(name + " interrupted.");
+    @Override
+    public void run() {
+        System.out.print(pemain + ", go!\n");
+        try {
+            for (int i=0; i<21 ; i++) {
+                int random = (int) Math.round(LetsGo.getRandomNumber()*angka);
+                System.out.println(pemain + " has passed checkpoint (" + i + ")");
+                Thread.sleep(random);
             }
-            System.out.println(name + " has passed checkpoint " +  checkpoint);
-            checkpoint++;
+            } catch (InterruptedException e) {
+                System.out.println(pemain+ " was interrupted");
+        }
+            System.out.println(pemain + " has finished!");
         }
 
-        //Finished Running
-        System.out.println(name + " has finished!");
-    }
+        public void start() {
 
-    public void start() {
-        if (t == null) {
-            //Creating the Thread
-            t = new Thread(this, threadName);
-            System.out.println(name + ", ready.");
-            //Starting the Thread
-            System.out.println(name + ", set...");
-            t.start();
+        if (thread == null){
+            thread = new Thread(this, pemain);
+            System.out.println(pemain + ", ready");
+            System.out.println(pemain + ", set");
+            thread.start();
         }
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public int getCheckpoint() {
-        return checkpoint;
-    }
-
-    public void setName(String name){
-        this.name=name;
-    }
-
-    public void setCheckpoint(int checkpoint){
-        this.checkpoint=checkpoint;
     }
 }

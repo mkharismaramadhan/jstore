@@ -1,27 +1,22 @@
-import static java.lang.Math.random;
-
 public class LetsGo {
+    public static int getRandomNumber(){
 
-    public LetsGo() {
+        //Dengan asumsi soal 100500ms berarti 100 - 500 ms dikarenakan waktu 100500 ms sangat lama
+        return (int)(Math.random() * ((5000 - 100) + 1)) + 100;
+
     }
 
     public static void main(String[] args) {
-        //Lionel < Andres < Messi
         double weightLionel = 1;
-        double weightAndres = 0.8;
+        double weightAndres = 0.75;
         double weightMessi = 0.5;
 
-        RunForYourLife lionel = new RunForYourLife("Lionel", weightLionel);
-        RunForYourLife andres = new RunForYourLife("Andres", weightAndres);
-        RunForYourLife messi = new RunForYourLife("Messii", weightMessi);
+        RunForYourLife pemain1 = new RunForYourLife("Lionel", weightLionel);
+        RunForYourLife pemain2 = new RunForYourLife("Andres", weightAndres);
+        RunForYourLife pemain3 = new RunForYourLife("Messi", weightMessi);
 
-        lionel.start();
-        andres.start();
-        messi.start();
-    }
-
-    public static int getRandomNumber(){
-        //Random Number Between 100-500
-        return (int)(Math.random() * ((500 - 100) + 1)) + 100;
+        pemain1.start();
+        pemain2.start();
+        pemain3.start();
     }
 }

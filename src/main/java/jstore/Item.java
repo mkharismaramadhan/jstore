@@ -1,53 +1,52 @@
 package jstore;
-/**
- * Class Item
- * Berisi mengenai item dari jStore
- * @author M. Kharisma Ramadhan
- * @version 1.0
- * since 2019
- */
 
 public class Item
 {
-    // instance variables - replace the example below with your own
     private int id;
     private String name;
+    // private int stock;
     private int price;
     private ItemCategory category;
     private ItemStatus status;
     private Supplier supplier;
-
-
-    public Item(String name, int price, ItemCategory category, ItemStatus status, Supplier supplier)
-    {
-        id=DatabaseItem.getLastItemID()+1;
-        this.name=name;
-        this.price=price;
-        this.category=category;
-        this.status=status;
-        this.supplier=supplier;      
-    }
     
     /**
-     * Method untuk mendapatkan nilai ID
+     * Konstruktor dari kelas Item
+     * @param name Sebagai nama dari barang
+     * @param price Sebagai harga dari barang yang tersedia
+     * @param category Sebagai kategori dari barang yang tersedia
+     * @param supplier Sebagai penyuplai barang
+     */
+    public Item(String name, int price, ItemCategory category, ItemStatus status, Supplier supplier)
+    {
+        this.id = DatabaseItem.getLastItemID()+1;
+        this.name=name;
+        this.status=status;
+        this.price=price;
+        this.supplier=supplier;
+        this.category=category;
+    }
+
+    /**
+     * Metode ini akan menampilkan Id yang di set pada konstruktor atau mutator
      * @return id
      */
-    public int getId() 
+    public int getId()
     {
         return id;
     }
     
     /**
-     * Method untuk mendapatkan nilai name
+     * Metode ini akan menampilkan nama yang di set pada konstruktor atau mutator
      * @return name
      */
     public String getName()
     {
         return name;
     }
-    
+
     /**
-     * Method untuk mendapatkan nilai price
+     * Metode ini akan menampilkan harga dari suatu barang yang di set pada konstruktor atau mutator
      * @return price
      */
     public int getPrice()
@@ -56,25 +55,21 @@ public class Item
     }
     
     /**
-     * Method untuk mendapatkan nilai category
+     * Metode ini akan menampilkan kategori suatu barang yang di set pada konstruktor atau mutator
      * @return category
      */
-    public ItemCategory getCategory() 
+    public ItemCategory getCategory()
     {
         return category;
     }
     
-    /**
-     * Method untuk mendapatkan nilai category
-     * @return category
-     */
-    public ItemStatus getStatus() 
+    public ItemStatus getStatus()
     {
         return status;
     }
     
     /**
-     * Method untuk mendapatkan nilai supplier
+     * Metode ini akan menampilkan nama penyuplai yang di set pada konstruktor atau mutator
      * @return supplier
      */
     public Supplier getSupplier()
@@ -82,69 +77,75 @@ public class Item
         return supplier;
     }
     
-    /**
-     * Method untuk menset nilai id
-     * @param id
+     /**
+     * Metode ini akan meminta Id yang akan ditampilkan di aksesor
+     * @param id Id dari barang yang ingin di-set
      */
     public void setId(int id)
     {
-        this.id = id;
+        this.id=id;
     }
     
     /**
-     * Method untuk menset nilai name
-     * @param name
+     * Metode ini akan meminta nama dari barang yang akan ditampilkan di aksesor
+     * @param name Nama untuk barang yang ingin di-set
      */
     public void setName(String name)
     {
-        this.name = name;
+        this.name=name;
     }
 
-    
     /**
-     * Method untuk menset nilai price
-     * @param price
+     * Metode ini akan meminta harga dari barang yang akan ditampilkan di aksesor
+     * @param price Harga dari barang yang ingin di-set
      */
     public void setPrice(int price)
     {
-        this.price = price;
+        this.price=price;
     }
-   
+    
     /**
-     * Method untuk menset nilai category
-     * @param category
+     * Metode ini akan meminta kategori dari barang yang akan ditampilkan di aksesor
+     * @param category Kategori dari barang yang ingin di-set
      */
     public void setCategory(ItemCategory category)
     {
-        this.category = category;
+        this.category=category;
     }
     
-
     public void setStatus(ItemStatus status)
     {
-        this.status = status;
+        this.status=status;
     }
     
     /**
-     * Method untuk menset nilai supplier
-     * @param supplier
+     * Metode ini akan meminta nama penyuplai barang yang akan ditampilkan di aksesor
+     * @param supplier Penyuplai dari barang yang ingin di-set
      */
     public void setSupplier(Supplier supplier)
     {
         this.supplier = supplier;
     }
     
-    /**
-     * Method untuk mencetak nama item
-     */
-    public String toString()
-    {
-        return "==========ITEM======="+
-        "\nID :" + id+
-        "\nName :"  + name+
-        "\nKategori :" + category+
-        "\nStatus :" + status+
-        "\nSupplier :" + this.supplier.getName();
-    }
+    //public void printData()
+	//{
+	//	System.out.println("\n======== ITEM ========");
+	//	System.out.println("ID: " + id);
+	//	System.out.println("Name: " + name);
+	//	System.out.println("Category: " + category);
+	//	System.out.println("Status: " + status);
+	//	System.out.println("Supplier: " + supplier.getName());
+	//}
     
+    /**
+     * Metode ini dijalankan untuk mencetak nama dari barang pada layar
+     */
+    public String toString(){
+        return	"Item: {" +
+				"ID: " + id +
+				", Name: " + name +
+				", Category: " + category +
+				", Status: " + status +
+				", Supplier: " + supplier.getName()+ "}\n";
+    }
 }

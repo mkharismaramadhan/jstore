@@ -1,41 +1,55 @@
 package jstore;
-/**
- * Write a description of class Sell_Installment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 public class Sell_Installment extends Invoice
 {
-    private static InvoiceType INVOICE_TYPE = InvoiceType.Sell;
-    private static InvoiceStatus INVOICE_STATUS = InvoiceStatus.Installment;
+    private static final InvoiceType INVOICE_TYPE = InvoiceType.Sell;
+    private static final InvoiceStatus INVOICE_STATUS = InvoiceStatus.Installment;
     private int installmentPeriod;
     private int installmentPrice;
     private Customer customer;
     private boolean isActive;
     
-    /**
-     * Constructor for objects of class Sell_Installment
-     */
-    public Sell_Installment(ArrayList<Integer> item, int InstallmentPeriod, Customer customer)
+  //  private static final InvoiceStatus INVOICE_STATUS = InvoiceStatus.Installment;
+  //  private static final InvoiceType INVOICE_TYPE = InvoiceType.Sell;
+  //  public Sell_Installment(int id, ArrayList<Integer> item, int totalItem, int installmentPeriod, Customer customer)
+  //  {
+  //       super(id, item, totalItem);
+  //       this.installmentPeriod = installmentPeriod;
+  //       this.customer=customer;
+  //  }
+    
+    public Sell_Installment(ArrayList<Integer> item, int installmentPeriod, Customer customer)
     {
         super(item);
-        this.installmentPeriod = installmentPeriod;
-        this.customer = customer;
-        isActive = true;
+        this.installmentPeriod=installmentPeriod;
+        this.customer=customer;
+        setIsActive(true);
+        int total =0;
+        for (int id: item)
+        {
+            Item temp = DatabaseItem.getItemFromID(id);
+            int priceTemp = 0;
+            if(temp!= null){
+                priceTemp = temp.getPrice();
+            }
+            total  += priceTemp;
+        }
+        this.setInstallmentPrice(total);
+        super.setTotalPrice(total);
+        //this.isActive = true;
     }
     
     public int getInstallmentPeriod()
     {
         return installmentPeriod;
-        
     }
     
     public int getInstallmentPrice()
     {
         return installmentPrice;
-        
     }
     
     public Customer getCustomer()
@@ -46,53 +60,60 @@ public class Sell_Installment extends Invoice
     public InvoiceStatus getInvoiceStatus()
     {
         return INVOICE_STATUS;
-        
     }
     
     public InvoiceType getInvoiceType()
     {
         return INVOICE_TYPE;
-        
     }
     
-    public void setInstallmentPrice(int totalPrice)
+    public void setInstallmentPrice(int total)
     {
-        installmentPrice = (totalPrice/installmentPeriod)*(102/100);
+       double result;
+       result= (total/installmentPeriod * 1.02);
+       this.installmentPrice=(int) result;
     }
-
+    
     public void setTotalPrice()
     {
-        setTotalPrice(installmentPrice*installmentPeriod);
+      //  double result;
+      //  result= (installmentPrice*installmentPeriod);
+      //  this.totalPrice= (int) result;
     }
-    
+        
     public void setCustomer(Customer customer)
     {
-        this.customer = customer;
+        this.customer=customer;
     }
     
-    public String toString()
-    {
-         String string="==========INVOICE=======";
-        string += "\nID ="+getId();
-        string += "\nBuy date =" + getDate();
-        for (Integer invoice : getItem())
-        {
-            Item item = DatabaseItem.getItemFromID(invoice.intValue());
-            string += "\nItem: " + item.getName();
-            string += "\nAmount: " + getItem().size();
-            string += "\nPrice: " + item.getPrice();
-            string += "\nSupplier ID: " + item.getSupplier().getId();
-            string += "\nSupplier Name: " + item.getSupplier().getName();
-        }
-        string += "\nPrice Total: " + getTotalPrice();
-        string += "\nInstallment Price: " + getInstallmentPrice();
-        string += "\nCustomer ID: " + customer.getId();
-        string += "\nCustomer Name: " + customer.getName();
-        string += "\nStatus: " + INVOICE_STATUS;
-        string += "\nIs Active: " + getIsActive();
-        string += "\nInstallment period: " + getInstallmentPeriod();
-        string += "\nSell Success";
-        return string;
-    }
+    // public void setInvoiceStatus(InvoiceStatus status)
+    // {
+        
+    // }
+    
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat ("dd MMMMM yyyy");
+       setTotalPrice(0);
+       setInstallmentPrice(0);
+      for (int temp1 : this.getItem())
+       {
+           System.out.println(DatabaseItem.getItemFromID(temp1).toString());
+       }
 
+	 return	"========INVOICE========" +
+	 	"\nID: " +  getId() + 
+//		"\nItem: " + getItem().getName() +
+//		"\nAmount: "  + getTotalItem() +
+		"\nBuy date: " + sdf.format(getDate()) +
+//		"\nPrice: " + getItem().getPrice() +
+		"\nTotal price: " + getTotalPrice() +
+		"\nInstallment price: " + installmentPrice +
+//		"\nSupplier ID: " + getItem().getSupplier().getId() +
+//		"\nSupplier name: " + getItem().getSupplier().getName() +
+		"\nCustomer ID: " + customer.getId() +
+		"\nCustomer Name: " + customer.getName() +
+		"\nStatus: " + InvoiceStatus.Installment + 
+		"\nInstallment period: " + installmentPeriod +
+		"\nSell Success\n";
+    }
 }

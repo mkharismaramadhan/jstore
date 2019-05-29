@@ -1,89 +1,96 @@
 package jstore;
-/**
- * Write a description of class Sell_Unpaid here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 public class Sell_Unpaid extends Invoice
 {
-    private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
-    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
+    private static final InvoiceType INVOICE_TYPE= InvoiceType.Sell;
+    private static final InvoiceStatus INVOICE_STATUS= InvoiceStatus.Unpaid;
     private Calendar dueDate;
     private Customer customer;
     private boolean isActive;
     
-    /**
-     * Constructor for objects of class Sell_Unpaid
-     */
-    public Sell_Unpaid(ArrayList<Integer> item,
-    Customer customer)
+    // public Sell_Unpaid(int id, ArrayList<Integer> item, int totalItem, Customer customer)
+    // {
+    //   super(id, item, totalItem);
+    //   this.customer=customer;
+    //   this.dueDate = Calendar.getInstance();
+    //   this.dueDate.add(Calendar.DATE, +1);
+    // }
+
+    public Sell_Unpaid(ArrayList<Integer> item, Customer customer)
     {
         super(item);
-        this.customer = customer;
-        //this.dueDate = Calendar.getInstance();
-        //this.dueDate.add(Calendar.DATE,+1);
-        //INVOICE_TYPE = InvoiceType.Sell;
-        //INVOICE_STATUS = InvoiceStatus.Unpaid;
-        isActive = true;
+        this.customer=customer;
+        setIsActive(true);
+        //this.isActive = true;
+        int total =0;
+        for (int id: item)
+        {
+            Item temp = DatabaseItem.getItemFromID(id);
+            int priceTemp = 0;
+            if(temp!= null){
+                priceTemp = temp.getPrice();
+            }
+            total  +=priceTemp;
+        }
+        super.setTotalPrice(total);
     }
-
-    public InvoiceStatus getInvoiceStatus()
-    {
+    
+    public InvoiceStatus getInvoiceStatus(){
         return INVOICE_STATUS;
-        
     }
     
-    public InvoiceType getInvoiceType()
-    {
+    public InvoiceType getInvoiceType(){
         return INVOICE_TYPE;
-        
     }
     
-    public Customer getCustomer()
-    {
+    public Customer getCustomer(){
         return customer;
     }
     
-    public Calendar getdueDate()
-    {
+    public Calendar getDueDate(){
         return dueDate;
     }
     
     public void setCustomer(Customer customer)
     {
-        this.customer = customer;
+        this.customer=customer;
     }
     
     public void setDueDate(Calendar dueDate)
     {
-        this.dueDate = dueDate;
+        this.dueDate=dueDate;
     }
+    
+    // public void setInvoiceStatus(InvoiceStatus status)
+    // {
+        
+    // }
     
     public String toString()
     {
-        String string="==========INVOICE=======";
-        string += "\nID ="+getId();
-        string += "\nBuy date =" + getDate();
-        for (Integer invoice : getItem())
-        {
-            Item item = DatabaseItem.getItemFromID(invoice.intValue());
-            string += "\nItem: " + item.getName();
-            string += "\nAmount: " + getItem().size();
-            string += "\nPrice: " + item.getPrice();
-            string += "\nSupplier ID: " + item.getSupplier().getId();
-            string += "\nSupplier Name: " + item.getSupplier().getName();
-        }
-        string += "\nPrice Total: " + getTotalPrice();
-        string += "\nCustomer ID: " + customer.getId();
-        string += "\nCustomer Name: " + customer.getName();
-        string += "\nStatus: " + INVOICE_STATUS;
-        string += "\nIs Active: " + getIsActive();
-        string += "\nDue date: " + getdueDate();
-        string += "\nIf payment is not received by dueDate, transaction will be cancelled.";
-        return string;
-    }
+       setTotalPrice(0);
+       for (int temp1 : this.getItem())
+       {
+           System.out.println(DatabaseItem.getItemFromID(temp1).toString());
+       }
+
+       SimpleDateFormat sdf = new SimpleDateFormat ("dd MMMMM yyyy");
+
+	 return "========INVOICE========" +
+		"\nID: " +  getId() + 
+//		"\nItem: " + getItem().getName() +
+//		"\nAmount: "  + getTotalItem() +
+		"\nBuy date: " + sdf.format(getDate()) +
+//		"\nPrice: " + getItem().getPrice() +
+		"\nTotal price: " + getTotalPrice() +
+//		"\nSupplier ID: " + getItem().getSupplier().getId() +
+//		"\nSupplier name: " + getItem().getSupplier().getName() +
+		"\nCustomer ID: " + customer.getId() +
+		"\nCustomer Name: " + customer.getName() +
+		"\nStatus: " + InvoiceStatus.Unpaid + 
+		"\nSell Success\n";
+	}
 }

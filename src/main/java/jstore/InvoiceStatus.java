@@ -7,21 +7,16 @@ package jstore;
  */
 public enum InvoiceStatus
 {
-    Paid {
-        public String toString() {
-            return "Paid";
-        }
-    },
+    Paid("Paid"), Unpaid("Unpaid"), Installment("Installment");
+    private String value;
     
-    Unpaid {
-        public String toString() {
-            return "Unpaid";
-        }
-    },
+    public String toString()
+    {
+        return value;
+    }
     
-    Installment {
-        public String toString() {
-            return "Installment";
-        }
-    },
+    private InvoiceStatus(String value)
+    {
+        this.value=value;
+    }
 }

@@ -1,15 +1,15 @@
 package jstore;
-import java.lang.*;
-
-public class ItemNotFoundException extends Exception{
+public class ItemNotFoundException extends Exception {
     private int item_error;
 
-    public ItemNotFoundException(int item_input){
-        super("Item ID : ");
-        item_error=item_input;
+    public ItemNotFoundException(int item_input) {
+        super("====Item Not Found====\n" +
+                "Item ID : ");
+        this.item_error=item_input;
     }
 
-    public String getExMessage(){
-        return super.getMessage() + item_error + " not found.";
+    public String getExMessage()
+    {
+        return super.getMessage() + item_error + " not found.\n";
     }
 }

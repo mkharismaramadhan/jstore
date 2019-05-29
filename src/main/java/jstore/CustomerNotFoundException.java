@@ -1,18 +1,16 @@
 package jstore;
-
-import java.lang.*;
-
-public class CustomerNotFoundException extends Exception{
-
+public class CustomerNotFoundException extends Exception
+{
     private int customer_error;
 
-    public CustomerNotFoundException(int customer_input)
-    {
-        super("Customer ID : ");
-        customer_error=customer_input;
+    public CustomerNotFoundException(int customer_input){
+        super("====Customer Not Found====\n" +
+                "Customer ID: ");
+        customer_error = customer_input;
     }
 
-    public String getExMessage(){
-        return super.getMessage() + customer_error + " not found.";
+    public String getExMessage()
+    {
+        return super.getMessage() + customer_error + " not found.\n";
     }
 }
